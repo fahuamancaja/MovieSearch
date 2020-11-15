@@ -1,0 +1,24 @@
+<form #movieForm='ngForm' (ngSubmit)="movieForm.valid && LoadMovies(model.moviesearch)" autocomplete="off">
+    <h2 class="text-center text-primary">Search Movie</h2>
+    <hr>
+    <div class="form-group">
+        <input type="text" class="form-control" name="movisearch" [(ngModel)]="model.moviesearch" placeholder="Type in Movie you wish to search..."> 
+    </div>    
+    <div class="form-group text-center">
+        <button class="btn btn-success mr-2" type="submit">submit</button>
+    </div>
+    
+</form>
+
+<div class="row" *ngIf="titlesList">
+    <div *ngFor="let title of titlesList" class="col-2">
+        <app-movies-card [title]="title"></app-movies-card>
+    </div>
+</div>
+
+<!-- <p>lists works!</p> 
+<div class="row">
+    <div class="col-2" *ngIf="titlesList">
+        <p *ngFor="let single of titlesList">{{single.title}}</p>
+    </div>
+</div> -->

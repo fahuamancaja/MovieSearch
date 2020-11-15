@@ -1,0 +1,29 @@
+<div class="row" *ngIf="movie">
+    <div class="col-4">
+        <div class="card">
+            <img src="{{movie.poster || './assets/user.png'}}" alt="{{movie.title}}" class="card-img-top img-thumbnail">
+            <div class="card-footer">
+                <div class="btn-group d-flex">
+                    <button class="btn btn-primary">Like</button>
+                    <button class="btn btn-secondary">Dislike</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <tabset class="member-tabset">
+            <tab heading='About {{movie.title}}'>
+                <div class="grouped-tab">
+                <h4>Released</h4>
+                <p>{{movie.year}}</p>
+
+                <h4>Movie Length</h4>
+                <p>{{movie.length}}</p>
+
+                <h4>Description</h4>
+                <p>{{movie.plot}}</p>
+            </div>
+            </tab>
+        </tabset>
+    </div>
+</div>
