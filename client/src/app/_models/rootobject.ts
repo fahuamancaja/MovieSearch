@@ -1,9 +1,8 @@
-import { Title } from '@angular/platform-browser';
-import { Company } from './company';
-import { Name } from './name';
+import { Result } from './result';
 
 export interface RootObject {
-    titles: Title[];
-    names: Name[];
-    companies: Company[];
+    page: number;
+    total_results: number;
+    total_pages: number;
+    results: Result[];
 }

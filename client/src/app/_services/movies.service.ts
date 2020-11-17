@@ -9,8 +9,8 @@ import { MovieObject } from '../_models/movieobject';
   providedIn: 'root'
 })
 export class MoviesService {
-  baseUrl = 'https://imdb-internet-movie-database-unofficial.p.rapidapi.com/search/';
-  baseMovieUrl = 'https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/';
+  baseUrl = 'https://api.themoviedb.org/3/search/movie?language=en-US';
+  baseMovieUrl = 'https://api.themoviedb.org/3/movie/';
   private currentRootSource = new ReplaySubject<RootObject>(1);
   currentRoot$ = this.currentRootSource.asObservable();
   
@@ -21,14 +21,14 @@ export class MoviesService {
   movies: RootObject;
   movie: MovieObject;
 
-  authkey = '4f108354ddmsh85de9442603ef09p143fddjsn5d07f93e6c12';
+  authkey = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMzZlM2ZkNTM4ZjljYzliZGI0MTVjMGVmOWMxMjVhMiIsInN1YiI6IjVmYjFiZDAxMTJjNjA0MDA0MmI2MjBlMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.y25P_8fFEuTyXpqLl97DBWs5PIpIhfm719xB8G6lzVQ';
 
   constructor(private http:HttpClient) { }
 
   getMovies(moviename: string) {
     const headers = new HttpHeaders()
-            .set('X-RapidAPI-Key', this.authkey);
-    return this.http.get<RootObject>(this.baseUrl + moviename, {headers}).pipe(
+            .set('Authorization', this.authkey);
+    return this.http.get<RootObject>(this.baseUrl + "&query=" + moviename, {headers}).pipe(
       map(movies => {
         this.movies = movies;
         console.log(movies);
@@ -39,7 +39,7 @@ export class MoviesService {
 
   getMovieById(movieid: string) {
     const headers = new HttpHeaders()
-            .set('X-RapidAPI-Key', this.authkey);
+            .set('Authorization', this.authkey);
     return this.http.get<MovieObject>(this.baseMovieUrl + movieid, {headers}).pipe(
       map(movie =>{
         this.movie = movie;

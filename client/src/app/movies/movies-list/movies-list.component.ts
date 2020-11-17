@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, ValidatorFn, Validators  } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { RootObject } from 'src/app/_models/rootobject';
-import { Title } from 'src/app/_models/title';
 import { MoviesService } from 'src/app/_services/movies.service';
 
 @Component({
@@ -15,7 +14,7 @@ export class MoviesListComponent implements OnInit {
   registerForm: FormGroup;
   model: any = {};
 
-  titlesList: any [];
+  resultList: any [];
   selected: string;
 
   constructor(private moviesService: MoviesService, private fb: FormBuilder) { }
@@ -27,13 +26,13 @@ ngOnInit(): void {
     this.moviesService.getMovies(movietitle).subscribe(movie => {
       this.rootObject = movie;
       console.log(this.rootObject);
-      this.titlesList = this.rootObject.titles;
+      this.resultList = this.rootObject.results;
 
-      console.log(this.titlesList);
+      console.log(this.resultList);
       });
   }
   DisplayArray() {
-    console.log(this.titlesList);
+    console.log(this.resultList);
   }
 
   testMovie() {

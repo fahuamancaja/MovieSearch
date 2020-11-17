@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RootObject } from 'src/app/_models/rootobject';
-import { Title } from 'src/app/_models/title';
+import { Result } from 'src/app/_models/result';
 
 @Component({
   selector: 'app-movies-card',
@@ -8,7 +8,7 @@ import { Title } from 'src/app/_models/title';
   styleUrls: ['./movies-card.component.css']
 })
 export class MoviesCardComponent implements OnInit {
-  @Input() title: Title;
+  @Input() result: Result;
 
   constructor() { }
 

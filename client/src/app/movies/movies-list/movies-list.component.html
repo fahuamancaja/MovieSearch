@@ -10,9 +10,9 @@
     
 </form>
 
-<div class="row" *ngIf="titlesList">
-    <div *ngFor="let title of titlesList" class="col-2">
-        <app-movies-card [title]="title"></app-movies-card>
+<div class="row" *ngIf="resultList">
+    <div *ngFor="let result of resultList" class="col-2">
+        <app-movies-card [result]="result"></app-movies-card>
     </div>
 </div>
 

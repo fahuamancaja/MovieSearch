@@ -1,7 +1,7 @@
 <div class="row" *ngIf="movie">
     <div class="col-4">
         <div class="card">
-            <img src="{{movie.poster || './assets/user.png'}}" alt="{{movie.title}}" class="card-img-top img-thumbnail">
+            <img src="{{'https://image.tmdb.org/t/p/w500' + movie.poster_path || './assets/user.png'}}" alt="{{movie.title}}" class="card-img-top img-thumbnail">
             <div class="card-footer">
                 <div class="btn-group d-flex">
                     <button class="btn btn-primary">Like</button>
@@ -15,13 +15,13 @@
             <tab heading='About {{movie.title}}'>
                 <div class="grouped-tab">
                 <h4>Released</h4>
-                <p>{{movie.year}}</p>
+                <p>{{movie.release_date}}</p>
 
                 <h4>Movie Length</h4>
-                <p>{{movie.length}}</p>
+                <p>{{movie.runtime}}</p>
 
                 <h4>Description</h4>
-                <p>{{movie.plot}}</p>
+                <p>{{movie.overview}}</p>
             </div>
             </tab>
         </tabset>
