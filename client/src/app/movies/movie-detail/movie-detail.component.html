@@ -1,18 +1,20 @@
 <div class="row" *ngIf="movie">
     <div class="col-4">
         <div class="card">
-            <img src="{{'https://image.tmdb.org/t/p/w500' + movie.poster_path || './assets/user.png'}}" alt="{{movie.title}}" class="card-img-top img-thumbnail">
+            <img src="{{posterShow() || './assets/404.png'}}" alt="{{movie.title}}" class="card-img-top img-thumbnail">
             <div class="card-footer">
                 <div class="btn-group d-flex">
-                    <button class="btn btn-primary">Like</button>
-                    <button class="btn btn-secondary">Dislike</button>
+                    <button class="btn btn-primary" (click)="incCount(true)">Like : {{this.pointService.likes}}</button>
+                    <button class="btn btn-secondary" (click)="incCount(false)">Dislike : {{this.pointService.dislikes}}</button>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-8">
         <tabset class="member-tabset">
+                <h4>{{movie.title}}</h4>
             <tab heading='About {{movie.title}}'>
+
                 <div class="grouped-tab">
                 <h4>Released</h4>
                 <p>{{movie.release_date}}</p>
@@ -21,7 +23,8 @@
                 <p>{{movie.runtime}}</p>
 
                 <h4>Description</h4>
-                <p>{{movie.overview}}</p>
+                <p>{{movie.overview}}</p> 
+
             </div>
             </tab>
         </tabset>
