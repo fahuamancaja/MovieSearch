@@ -12,6 +12,10 @@ import { PointService } from 'src/app/_services/point.service';
 })
 export class MovieDetailComponent implements OnInit {
   movie: MovieObject;
+  point: MovieDb;
+
+  public likes = 0;
+  public dislikes = 0;
 
   constructor(private movieService: MoviesService, private route: ActivatedRoute, public pointService: PointService) { }
 
@@ -22,6 +26,18 @@ export class MovieDetailComponent implements OnInit {
   loadMovie() {
     this.movieService.getMovieById(this.route.snapshot.paramMap.get('id')).subscribe(movie => {
       this.movie = movie;
+      const movieToUpdate: MovieDb = <MovieDb>{};
+      movieToUpdate.moviename = this.movie?.title;
+      movieToUpdate.like = 0;
+      movieToUpdate.dislike = 0;
+      this.pointService.updateMovie(movieToUpdate);
+      console.log(movieToUpdate);
+      console.log(this.movie);
+      this.pointService.getMoviePoints(this.movie?.title).subscribe(movie => {
+        this.point = movie;
+        this.likes = movie?.like;
+        this.dislikes = movie?.dislike;
+      });
     })
   }
 
@@ -45,16 +61,16 @@ export class MovieDetailComponent implements OnInit {
     {
       movieToUpdate.like = 1;
       movieToUpdate.dislike = 0;
+      this.point.like = this.point.like + 1;
     }
     if(pointresult == false)
     {
       movieToUpdate.like = 0;
       movieToUpdate.dislike = 1;
+      this.point.dislike = this.point.dislike + 1;
     }
 
     this.pointService.updateMovie(movieToUpdate);
-    console.log(movieToUpdate);
-
   }
 
 }

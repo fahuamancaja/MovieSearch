@@ -47,7 +47,6 @@ export class MoviesService {
     return this.http.get<MovieObject>(this.baseMovieUrl + movieid, {headers}).pipe(
       map(movie =>{
         this.movie = movie;
-        console.log(movie);
         return this.movie;
       })
     )

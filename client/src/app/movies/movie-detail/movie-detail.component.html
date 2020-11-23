@@ -1,11 +1,11 @@
-<div class="row" *ngIf="movie">
+<div class="row" *ngIf="point">
     <div class="col-4">
         <div class="card">
             <img src="{{posterShow() || './assets/404.png'}}" alt="{{movie.title}}" class="card-img-top img-thumbnail">
             <div class="card-footer">
                 <div class="btn-group d-flex">
-                    <button class="btn btn-primary" (click)="incCount(true)">Like : {{this.pointService.likes}}</button>
-                    <button class="btn btn-secondary" (click)="incCount(false)">Dislike : {{this.pointService.dislikes}}</button>
+                    <button class="btn btn-primary" (click)="incCount(true)">Like : {{this.point?.like}}</button>
+                    <button class="btn btn-secondary" (click)="incCount(false)">Dislike : {{this.point?.dislike}}</button>
                 </div>
             </div>
         </div>

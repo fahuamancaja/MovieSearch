@@ -55,7 +55,7 @@ namespace API.Controllers
             
             if(movieUpdateDto.Like == 1)
             {
-                var movieName = movieUpdateDto.MovieName;
+                var movieName = movieUpdateDto.MovieName.ToLower();
                 var movie = await _context.AppMovies.FirstOrDefaultAsync(x => x.MovieName == movieName);
 
                movie.Like = movie.Like + 1;
@@ -68,7 +68,7 @@ namespace API.Controllers
 
             else if(movieUpdateDto.Dislike == 1)
             {
-                var movieName = movieUpdateDto.MovieName;
+                var movieName = movieUpdateDto.MovieName.ToLower();
                 var movie = await _context.AppMovies.FirstOrDefaultAsync(x => x.MovieName == movieName);
 
                 movie.Dislike = movie.Dislike + 1;
@@ -80,10 +80,25 @@ namespace API.Controllers
 
             else
             {
-                
-                return BadRequest("No user changes made");
+                var movieName = movieUpdateDto.MovieName.ToLower();
+                var movieUp = await _context.AppMovies.SingleOrDefaultAsync(x => x.MovieName == movieName);
+                return movieUp;
             }
                 
+        }
+
+        [HttpGet("{moviename}", Name = "GetMovie")]
+        public async Task<ActionResult<AppMovie>> GetMovie(string movieName)
+        {
+            if (!await MovieExists(movieName.ToLower())) 
+            {
+                return BadRequest("Movie doesn't exist"); 
+            }
+            else
+            {
+                var movieUp = await _context.AppMovies.SingleOrDefaultAsync(x => x.MovieName == movieName.ToLower());
+                return movieUp;
+            }
         }
     }
 }
