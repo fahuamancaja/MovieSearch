@@ -16,7 +16,14 @@ export class PointService {
   constructor(private http:HttpClient) { }
 
   updateMovie(movieDb: MovieDb) {
-    return this.http.post<MovieDb>(this.dbUrl + 'moviesearch', movieDb).subscribe();
+    return this.http.post<MovieDb>(this.dbUrl + 'moviesearch', movieDb).pipe(
+      map(movieDb => {
+        this.movieDb = movieDb;
+        return movieDb;
+      }
+
+      )
+    );
   }
   
   getMoviePoints(moviename: string) {

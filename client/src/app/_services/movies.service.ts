@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { RootObject } from '../_models/rootobject';
 import { MovieObject } from '../_models/movieobject';
 import { MovieDb } from '../_models/movieDb';
+import { CastObject } from '../_models/castObject';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class MoviesService {
   
   movies: RootObject;
   movie: MovieObject;
+  cast: CastObject;
 
   authkey = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMzZlM2ZkNTM4ZjljYzliZGI0MTVjMGVmOWMxMjVhMiIsInN1YiI6IjVmYjFiZDAxMTJjNjA0MDA0MmI2MjBlMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.y25P_8fFEuTyXpqLl97DBWs5PIpIhfm719xB8G6lzVQ';
 
@@ -35,7 +37,7 @@ export class MoviesService {
     return this.http.get<RootObject>(this.baseUrl + "&query=" + moviename, {headers}).pipe(
       map(movies => {
         this.movies = movies;
-        console.log(movies);
+        // console.log(movies);
         return movies;
       })
     );
@@ -52,6 +54,14 @@ export class MoviesService {
     )
   }
 
-
-
+  getCredits(movieid: number) {
+    const headers = new HttpHeaders()
+      .set('Authorization', this.authkey);
+    return this.http.get<CastObject>(this.baseMovieUrl + movieid + '/credits', {headers}).pipe(
+      map(cast => {
+        this.cast = cast;
+        return this.cast;
+      })
+    )
+  }
 }
