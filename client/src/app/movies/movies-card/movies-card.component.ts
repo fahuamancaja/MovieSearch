@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RootObject } from 'src/app/_models/rootobject';
 import { Result } from 'src/app/_models/result';
 import { PointService } from 'src/app/_services/point.service';
+import { MovieDb } from 'src/app/_models/movieDb';
+import { MovieObject } from 'src/app/_models/movieobject';
 
 @Component({
   selector: 'app-movies-card',
@@ -10,6 +12,7 @@ import { PointService } from 'src/app/_services/point.service';
 })
 export class MoviesCardComponent implements OnInit {
   @Input() result: Result;
+  point: MovieDb;
 
   constructor(public pointService: PointService) { }
 
@@ -27,8 +30,4 @@ export class MoviesCardComponent implements OnInit {
   public getCount() {
     return this.pointService.likes;
   }
-  public incCount(){
-    this.pointService.likes += 1;
-  }
-
 }
