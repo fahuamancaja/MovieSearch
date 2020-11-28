@@ -17,7 +17,6 @@ export class MoviesCardComponent implements OnInit {
   constructor(public pointService: PointService) { }
 
   ngOnInit(): void {
-    //console.log("These are the titels " + this.title);
   }
 
   posterShow() {

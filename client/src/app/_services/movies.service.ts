@@ -37,7 +37,6 @@ export class MoviesService {
     return this.http.get<RootObject>(this.baseUrl + "&query=" + moviename, {headers}).pipe(
       map(movies => {
         this.movies = movies;
-        // console.log(movies);
         return movies;
       })
     );

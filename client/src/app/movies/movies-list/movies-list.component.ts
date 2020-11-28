@@ -25,17 +25,7 @@ ngOnInit(): void {
   LoadMovies(movietitle: string) {
     this.moviesService.getMovies(movietitle).subscribe(movie => {
       this.rootObject = movie;
-      // console.log(this.rootObject);
       this.resultList = this.rootObject.results;
-
-      // console.log(this.resultList);
       });
-  }
-  DisplayArray() {
-    // console.log(this.resultList);
-  }
-
-  testMovie() {
-    // console.log(this.model);
   }
 }

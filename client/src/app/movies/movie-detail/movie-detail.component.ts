@@ -36,7 +36,6 @@ export class MovieDetailComponent implements OnInit {
       movieToUpdate.dislike = 0;
       var results = this.pointService.updateMovie(movieToUpdate).subscribe(movie => {
         this.point = movie;
-        console.log(this.point);
         this.likes = movie.like;
         this.dislikes = movie.dislike;
       });
@@ -53,15 +52,6 @@ export class MovieDetailComponent implements OnInit {
         });
         this.director = direct;
       })
-
-      // console.log(movieToUpdate);
-      // console.log(this.movie);
-
-      // this.pointService.getMoviePoints(this.movie?.title).subscribe(movie => {
-      //   this.point = movie;
-      //   this.likes = movie?.like;
-      //   this.dislikes = movie?.dislike;
-      // });
     })
   }
 
@@ -93,7 +83,6 @@ export class MovieDetailComponent implements OnInit {
       movieToUpdate.dislike = 1;
       this.point.dislike = this.point.dislike + 1;
     }
-    console.log(movieToUpdate);
     this.pointService.updateMovie(movieToUpdate).subscribe();
   }
 

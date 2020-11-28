@@ -26,7 +26,6 @@ export class JwtInterceptor implements HttpInterceptor {
           'X-RapidAPI-Key': '4f108354ddmsh85de9442603ef09p143fddjsn5d07f93e6c12'
         }
       })
-      console.log(request)
     }
     return next.handle(request);
   }
