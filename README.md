@@ -16,7 +16,7 @@
  8. Might need to run, as well: Dotnet dev-certs https --trust (This will create an approved local host for https api, remove any previous local host certs to avoid issues)
  9. In Angular side within client folder run: ng serve
  10. Data is automatically seeded to sqlite db
- 11. Go to http://localhost:4200/ (DO NOT USE HTTPS - no certs available sadly)(Disclaimer - C# API should be on http://localhost:5000/)
+ 11. Go to http://localhost:4200/ (DO NOT USE HTTPS - no certs available sadly)(Disclaimer - C# API should be on http://localhost:5000/ but if different, adjust on client side in point.service.ts in dbUrl string)
  
 ## Project Status
  Complete for version 1.
