@@ -10,14 +10,13 @@
  2. Install .NET 5 Sdk (Dotnet 3 will not work!) 
  3. Install nodejs with npm
  4. Run in Terminal in API folder: dotnet tool install --global dotnet-ef (Make sure version 5+ installed)
- 5. Restore unresolved dependencies for C# API by executing resotre command or generate assets and run npm install from client for frontEnd Dependencies
+ 5. Restore unresolved dependencies for C# API by executing restore command or generate assets and run npm install from client folder for frontEnd Dependencies
  6. Drop Database: dotnet ef database drop
  7. Recreate Database: dotnet ef database update
  8. Start API from API folder by running from CLI: dotnet run. 
  9. Might need to run, as well: Dotnet dev-certs https --trust (This will create an approved local host for https api, remove any previous local host certs to avoid issues)
  10. In Angular side within client folder run: ng serve
- 11. Data is automatically seeded to sqlite db
- 12. Go to http://localhost:4200/ (DO NOT USE HTTPS - no certs available sadly)(Disclaimer - C# API call should be on https://localhost:5001/api/movie/ but if different port, adjust on client side in point.service.ts in dbUrl string)
+ 11. Go to http://localhost:4200/ (DO NOT USE HTTPS - no certs available sadly)(Disclaimer - C# API call should be on https://localhost:5001/api/movie/ but if different port, adjust on client side in point.service.ts in dbUrl string)
  
 ## Project Status
  Complete for version 1.
