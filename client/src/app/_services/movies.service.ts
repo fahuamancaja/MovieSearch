@@ -4,19 +4,20 @@ import { map } from 'rxjs/operators';
 import { RootObject } from '../_models/rootobject';
 import { MovieObject } from '../_models/movieobject';
 import { CastObject } from '../_models/castObject';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MoviesService {
-  baseUrl = 'https://api.themoviedb.org/3/search/movie?language=en-US';
-  baseMovieUrl = 'https://api.themoviedb.org/3/movie/';
+  baseUrl = environment.baseUrl;
+  baseMovieUrl = environment.baseMovieUrl;
   
   movies: RootObject;
   movie: MovieObject;
   cast: CastObject;
 
-  authkey = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMzZlM2ZkNTM4ZjljYzliZGI0MTVjMGVmOWMxMjVhMiIsInN1YiI6IjVmYjFiZDAxMTJjNjA0MDA0MmI2MjBlMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.y25P_8fFEuTyXpqLl97DBWs5PIpIhfm719xB8G6lzVQ';
+  authkey = environment.authkey;
 
   constructor(private http:HttpClient) { }
 
