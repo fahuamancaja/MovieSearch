@@ -1,3 +1,4 @@
+import { CloneVisitor } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CastObject } from 'src/app/_models/castObject';
@@ -13,6 +14,7 @@ import { PointService } from 'src/app/_services/point.service';
 })
 export class MovieDetailComponent implements OnInit {
   movie: MovieObject;
+  movieId: number;
   point: MovieDb;
   cast: CastObject;
 
@@ -30,14 +32,19 @@ export class MovieDetailComponent implements OnInit {
   loadMovie() {
     this.movieService.getMovieById(this.route.snapshot.paramMap.get('id')).subscribe(movie => {
       this.movie = movie;
+      this.movieId = movie.id;
       const movieToUpdate: MovieDb = <MovieDb>{};
       movieToUpdate.moviename = this.movie?.title;
+      movieToUpdate.movieId = this.movie?.id;
       movieToUpdate.like = 0;
       movieToUpdate.dislike = 0;
+
       var results = this.pointService.updateMovie(movieToUpdate).subscribe(movie => {
         this.point = movie;
+        this.movie.id = movie.id;
         this.likes = movie.like;
         this.dislikes = movie.dislike;
+
       });
 
       var cast = this.movieService.getCredits(movie.id).subscribe(cast => {
@@ -69,6 +76,7 @@ export class MovieDetailComponent implements OnInit {
   public incCount(pointresult: boolean){
     const movieToUpdate: MovieDb = <MovieDb>{};
     movieToUpdate.moviename = this.movie.title;
+    movieToUpdate.movieId = this.movieId;
     if(pointresult == true)
     {
       movieToUpdate.like = 1;
@@ -82,6 +90,7 @@ export class MovieDetailComponent implements OnInit {
       this.point.dislike = this.point.dislike + 1;
     }
     this.pointService.updateMovie(movieToUpdate).subscribe();
+
   }
 
 }

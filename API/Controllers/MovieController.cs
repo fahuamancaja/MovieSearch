@@ -19,7 +19,7 @@ namespace API.Controllers
         [HttpPost("moviesearch")]
         public async Task<ActionResult<AppMovie>> CreateMovie(MovieUpdateDto movieUpdate)
         {
-            if (await MovieExists(movieUpdate.MovieName)) 
+            if (await MovieExists(movieUpdate.MovieId)) 
             {
                 return await UpdateMovie(movieUpdate); 
             }
@@ -29,7 +29,8 @@ namespace API.Controllers
             {
                 MovieName = movieUpdate.MovieName.ToLower(),
                 Like = movieUpdate.Like,
-                Dislike = movieUpdate.Dislike
+                Dislike = movieUpdate.Dislike,
+                MovieId = movieUpdate.MovieId
             };
             _context.AppMovies.Add(movie);
             await _context.SaveChangesAsync();
@@ -38,9 +39,9 @@ namespace API.Controllers
             }
         }
 
-        private async Task<bool> MovieExists(string movienName)
+        private async Task<bool> MovieExists(int movieId)
         {
-            return await _context.AppMovies.AnyAsync(x => x.MovieName == movienName.ToLower());
+            return await _context.AppMovies.AnyAsync(x => x.MovieId == movieId);
         }
 
         public async Task<ActionResult<AppMovie>> UpdateMovie(MovieUpdateDto movieUpdateDto)
@@ -48,33 +49,33 @@ namespace API.Controllers
             
             if(movieUpdateDto.Like == 1)
             {
-                var movieName = movieUpdateDto.MovieName.ToLower();
-                var movie = await _context.AppMovies.FirstOrDefaultAsync(x => x.MovieName == movieName);
+                var movieId = movieUpdateDto.MovieId;
+                var movie = await _context.AppMovies.FirstOrDefaultAsync(x => x.MovieId == movieId);
 
                movie.Like = movie.Like + 1;
 
                 await _context.SaveChangesAsync();
-                var movieUp = await _context.AppMovies.SingleOrDefaultAsync(x => x.MovieName == movieName);
+                var movieUp = await _context.AppMovies.SingleOrDefaultAsync(x => x.MovieId == movieId);
                 return movieUp;
 
             }
 
             else if(movieUpdateDto.Dislike == 1)
             {
-                var movieName = movieUpdateDto.MovieName.ToLower();
-                var movie = await _context.AppMovies.FirstOrDefaultAsync(x => x.MovieName == movieName);
+                var movieId = movieUpdateDto.MovieId;
+                var movie = await _context.AppMovies.FirstOrDefaultAsync(x => x.MovieId == movieId);
 
                 movie.Dislike = movie.Dislike + 1;
 
                 await _context.SaveChangesAsync();
-                var movieUp = await _context.AppMovies.SingleOrDefaultAsync(x => x.MovieName == movieName);
+                var movieUp = await _context.AppMovies.SingleOrDefaultAsync(x => x.MovieId == movieId);
                 return movieUp;
             }
 
             else
             {
-                var movieName = movieUpdateDto.MovieName.ToLower();
-                var movieUp = await _context.AppMovies.SingleOrDefaultAsync(x => x.MovieName == movieName);
+                var movieId = movieUpdateDto.MovieId;
+                var movieUp = await _context.AppMovies.SingleOrDefaultAsync(x => x.MovieId == movieId);
                 return movieUp;
             }
         }

@@ -27,6 +27,9 @@ namespace API.Data.Migrations
                     b.Property<int>("Like")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("MovieId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("MovieName")
                         .HasColumnType("TEXT");
 

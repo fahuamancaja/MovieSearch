@@ -2,7 +2,7 @@
 
 namespace API.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class DataInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,8 @@ namespace API.Data.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     MovieName = table.Column<string>(type: "TEXT", nullable: true),
                     Like = table.Column<int>(type: "INTEGER", nullable: false),
-                    Dislike = table.Column<int>(type: "INTEGER", nullable: false)
+                    Dislike = table.Column<int>(type: "INTEGER", nullable: false),
+                    MovieId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -3,4 +3,5 @@ export interface MovieDb {
     moviename: string;
     like: number;
     dislike: number;
+    movieId: number;
 }

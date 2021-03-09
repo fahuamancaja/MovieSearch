@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201115185610_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210309133834_DataInitial")]
+    partial class DataInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,6 +27,9 @@ namespace API.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Like")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MovieId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("MovieName")
