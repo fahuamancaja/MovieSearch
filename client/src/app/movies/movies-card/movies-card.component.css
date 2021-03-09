@@ -18,7 +18,7 @@ overflow: hidden;
 position: relative;
 }
 
-.member-icons {
+.movie-icons {
 position: absolute;
 bottom: -30%;
 left:0;
@@ -28,7 +28,7 @@ margin-left: auto;
 opacity: 0;
 }
 
-.card-img-wrapper:hover .member-icons {
+.card-img-wrapper:hover .movie-icons {
 bottom: 0;
 opacity: 1;
 }

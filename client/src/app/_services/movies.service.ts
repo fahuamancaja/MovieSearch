@@ -1,10 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RootObject } from '../_models/rootobject';
 import { MovieObject } from '../_models/movieobject';
-import { MovieDb } from '../_models/movieDb';
 import { CastObject } from '../_models/castObject';
 
 @Injectable({
@@ -13,15 +11,6 @@ import { CastObject } from '../_models/castObject';
 export class MoviesService {
   baseUrl = 'https://api.themoviedb.org/3/search/movie?language=en-US';
   baseMovieUrl = 'https://api.themoviedb.org/3/movie/';
-
-
-  private currentRootSource = new ReplaySubject<RootObject>(1);
-  currentRoot$ = this.currentRootSource.asObservable();
-  
-  private currentMovieSource = new ReplaySubject<MovieObject>(1);
-  currentMovie$ = this.currentMovieSource.asObservable();
-
-
   
   movies: RootObject;
   movie: MovieObject;

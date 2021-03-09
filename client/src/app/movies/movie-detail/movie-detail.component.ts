@@ -65,9 +65,7 @@ export class MovieDetailComponent implements OnInit {
     return poster; }
   }
 
-  public getCount() {
-    return this.pointService.likes;
-  }
+
   public incCount(pointresult: boolean){
     const movieToUpdate: MovieDb = <MovieDb>{};
     movieToUpdate.moviename = this.movie.title;

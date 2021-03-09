@@ -8,9 +8,6 @@ import { MovieDb } from '../_models/movieDb';
 })
 export class PointService {
   dbUrl = 'https://localhost:5001/api/movie/';
-
-  public likes = 0;
-  public dislikes = 0;
   movieDb: MovieDb;
 
   constructor(private http:HttpClient) { }
@@ -20,13 +17,7 @@ export class PointService {
       map(movieDb => {
         this.movieDb = movieDb;
         return movieDb;
-      }
-
-      )
+      })
     );
-  }
-  
-  getMoviePoints(moviename: string) {
-    return this.http.get<MovieDb>(this.dbUrl + moviename);
   }
 }

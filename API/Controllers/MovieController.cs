@@ -2,7 +2,6 @@ using System.Threading.Tasks;
 using API.Data;
 using API.DTO;
 using API.Entities;
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,11 +10,9 @@ namespace API.Controllers
     public class MovieController : BaseApiController
     {
         private readonly DataContext _context;
-        private readonly IMapper _mapper;
 
-        public MovieController(DataContext context, IMapper mapper)
+        public MovieController(DataContext context)
         {
-            _mapper = mapper;
             _context = context;
         }
 
@@ -36,12 +33,8 @@ namespace API.Controllers
             };
             _context.AppMovies.Add(movie);
             await _context.SaveChangesAsync();
-            return new AppMovie
-            {
-                MovieName = movie.MovieName,
-                Like = movie.Like,
-                Dislike = movie.Dislike
-            };
+
+            return Ok(movie);
             }
         }
 
@@ -82,21 +75,6 @@ namespace API.Controllers
             {
                 var movieName = movieUpdateDto.MovieName.ToLower();
                 var movieUp = await _context.AppMovies.SingleOrDefaultAsync(x => x.MovieName == movieName);
-                return movieUp;
-            }
-                
-        }
-
-        [HttpGet("{moviename}", Name = "GetMovie")]
-        public async Task<ActionResult<AppMovie>> GetMovie(string movieName)
-        {
-            if (!await MovieExists(movieName.ToLower())) 
-            {
-                return BadRequest("Movie doesn't exist"); 
-            }
-            else
-            {
-                var movieUp = await _context.AppMovies.SingleOrDefaultAsync(x => x.MovieName == movieName.ToLower());
                 return movieUp;
             }
         }

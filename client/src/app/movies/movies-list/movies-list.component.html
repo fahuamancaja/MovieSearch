@@ -1,4 +1,4 @@
-<form #movieForm='ngForm' (ngSubmit)="movieForm.valid && LoadMovies(model.moviesearch)" autocomplete="off">
+<form #movieForm='ngForm' (ngSubmit)="LoadMovies(model.moviesearch)" autocomplete="off">
     <h2 class="text-center text-primary">Search Movie</h2>
     <hr>
     <div class="form-group">
@@ -15,10 +15,3 @@
         <app-movies-card [result]="result"></app-movies-card>
     </div>
 </div>
-
-<!-- <p>lists works!</p> 
-<div class="row">
-    <div class="col-2" *ngIf="titlesList">
-        <p *ngFor="let single of titlesList">{{single.title}}</p>
-    </div>
-</div> -->
