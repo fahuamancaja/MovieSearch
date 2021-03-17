@@ -1,6 +1,9 @@
 # Movie Search App!
 ## Screenshots
  Included in Screenshots folder.
+ 
+## Demo of usage
+![MovieSearch Demo](demo/demo.gif)
 
 ## Description
  Search Movies and like and dislike movies. 
